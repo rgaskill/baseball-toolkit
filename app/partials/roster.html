@@ -1,0 +1,21 @@
+<table>
+	<thead>
+		<tr>
+			<th>Player Name</th>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+			<th>5</th>
+			<th>6</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(player, positions) in positionMap">
+			<td>{{player}}</td>
+			<td ng-repeat="(inning, position) in positions"><input type="text" ng-model="position" position-autocomplete="autocompleteOptions(player,inning)" ></input></td>
+		</tr>
+		<tr><td></td><td>{{availablePositionsForInning(1)}}</td></tr> 
+	</tbody>
+</table>
+<input type="text" ng-model="newPlayer"><button ng-click="addPlayer(newPlayer)">Add</button>
