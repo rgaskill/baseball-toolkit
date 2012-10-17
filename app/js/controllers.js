@@ -5,19 +5,19 @@
 
 function Roster($scope, $log) {
 
-	var emptyPositions = {"1": "Bench","2": "Bench","3": "Bench","4": "Bench","5": "Bench","6": "Bench"};
+	var emptyPositions = {"1": {value:"Bench"},"2": {value:"Bench"},"3": {value:"Bench"},"4": {value:"Bench"},"5": {value:"Bench"},"6": {value:"Bench"}};
 
 	var requiredPositions = {'P':'', 'C':'', '1B':'', '2B':'', '3B':'', 'SS':'', 'RF':'', 'RC':'', 'LC':'', 'LF':''};
 
 
 	$scope.positionMap = {};
-	$scope.positionAvailMap = {};
+	
 	
 
 
 	$scope.addPlayer = function(newPlayer){
 		$log.log(newPlayer);
-		$scope.positionMap[newPlayer] = jQuery.extend(true, {}, emptyPositions);
+		$scope.positionMap[newPlayer] = angular.copy(emptyPositions);
 	};
 
 	$scope.availablePositionsForPlayer = function(player, inning) {
@@ -28,49 +28,48 @@ function Roster($scope, $log) {
 
 	$scope.availablePositionsForInning = function(inning) {
 
-		var positions = jQuery.extend(true, {}, requiredPositions);
+		var positions = angular.copy(requiredPositions);
 		var ret = [];
 
-		jQuery.each ( $scope.positionMap, function (key, value) {
-			delete positions[value[inning]];
-		});
+		angular.forEach ( $scope.positionMap, function (value, key) {
+			delete this[value[inning].value];
+		}, positions);
 
 		
 
-		jQuery.each ( positions, function (key, value) {
-			ret.push(key);
-		});
+		angular.forEach ( positions, function (value, key) {
+			this.push(key);
+		}, ret);
 
 		return ret;
 
 	};
 
 	
-
-	$scope.autocompleteOptions =  function(player, inning) {
-
-		return {
-			autoFocus: true,
-			delay: 0,
-			select: function(event, ui){
-				$log.log(player);
-				$log.log(inning);
-				$log.log(ui.item.value);
-				$log.log($scope.positionMap[player][inning]);
-				$scope.positionMap[player][inning] = ui.item.value;
-				$log.log($scope.positionMap[player][inning]);
-			},
-			source: function(request, response) {
-				response($scope.availablePositionsForInning(inning));
-			}
-		};
-
-
+	$scope.setPosition = function(player, inning, position){
+		$scope.positionMap[player][inning].value =  position;
+		$scope.$digest();
 	};
+
+	
 
 	
 
 }
 Roster.$inject = ['$scope','$log'];
+
+function RosterPosition($scope,$log) {
+	$scope.autocompleteOptions =  {
+		autoFocus: true,
+		delay: 0,
+		select: function(event, ui){
+			$scope.setPosition($scope.player,$scope.inning, ui.item.value);
+		},
+		source: function(request, response) {
+			response($scope.availablePositionsForInning($scope.inning));
+		}
+	};
+}
+RosterPosition.$inject = ['$scope','$log'];
 
 

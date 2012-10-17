@@ -13,9 +13,16 @@
 	<tbody>
 		<tr ng-repeat="(player, positions) in positionMap">
 			<td>{{player}}</td>
-			<td ng-repeat="(inning, position) in positions"><input type="text" ng-model="position" position-autocomplete="autocompleteOptions(player,inning)" ></input></td>
+			<td ng-repeat="(inning, position) in positions"  ng-controller="RosterPosition"><input type="text" position-autocomplete="autocompleteOptions" ng-model="position.value" ></input></td>
 		</tr>
-		<tr><td></td><td>{{availablePositionsForInning(1)}}</td></tr> 
+		<tr><td></td>
+			<td>{{availablePositionsForInning(1)}}</td>
+			<td>{{availablePositionsForInning(2)}}</td>
+			<td>{{availablePositionsForInning(3)}}</td>
+			<td>{{availablePositionsForInning(4)}}</td>
+			<td>{{availablePositionsForInning(5)}}</td>
+			<td>{{availablePositionsForInning(6)}}</td>
+		</tr> 
 	</tbody>
 </table>
 <input type="text" ng-model="newPlayer"><button ng-click="addPlayer(newPlayer)">Add</button>

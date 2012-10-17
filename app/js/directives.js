@@ -11,10 +11,13 @@ module.directive('appVersion', ['version', function(version) {
     };
   }]);
 
-module.directive('positionAutocomplete', function() {
+module.directive('positionAutocomplete', function($log) {
     return function(scope, elm, attrs) {
-		var expression = attrs.positionAutocomplete;
-		var options = scope.$eval(expression);
-		elm.autocomplete(options);
+      // $log.log(scope.player);
+      // $log.log(scope.inning);
+      
+      var expression = attrs.positionAutocomplete;
+      var options = scope.$eval(expression);
+      elm.autocomplete(options);
     };
   });
