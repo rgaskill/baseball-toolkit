@@ -7,12 +7,32 @@ function Roster($scope, $log) {
 
 	var emptyPositions = {"1": {value:"Bench"},"2": {value:"Bench"},"3": {value:"Bench"},"4": {value:"Bench"},"5": {value:"Bench"},"6": {value:"Bench"}};
 
-	var requiredPositions = {'P':'', 'C':'', '1B':'', '2B':'', '3B':'', 'SS':'', 'RF':'', 'RC':'', 'LC':'', 'LF':''};
+	$scope.requiredPositions = {'P':'', 'C':'', '1B':'', '2B':'', '3B':'', 'SS':'', 'RF':'', 'RC':'', 'LC':'', 'LF':''};
 
 
 	$scope.positionMap = {};
 	
 	
+	$scope.benchCount = function(player){
+		var pos = $scope.positionMap[player];
+		var count = 0;
+		angular.forEach(pos, function(value,key) {
+			if ( value.value === 'Bench') {
+				count = count + 1;
+			}
+		});
+		return count;
+	};
+
+	$scope.positionFilled = function(position, inning) {
+		var ret = '';
+		angular.forEach ( $scope.positionMap, function (value, key) {
+			if ( value[inning].value === position ){
+				ret = 'X';
+			}
+		});
+		return ret;
+	};
 
 
 	$scope.addPlayer = function(newPlayer){
@@ -28,7 +48,7 @@ function Roster($scope, $log) {
 
 	$scope.availablePositionsForInning = function(inning) {
 
-		var positions = angular.copy(requiredPositions);
+		var positions = angular.copy($scope.requiredPositions);
 		var ret = [];
 
 		angular.forEach ( $scope.positionMap, function (value, key) {

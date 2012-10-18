@@ -8,21 +8,41 @@
 			<th>4</th>
 			<th>5</th>
 			<th>6</th>
+			<th>Bench Count</th>
+			<th>Positons Played More Than Once</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="(player, positions) in positionMap">
 			<td>{{player}}</td>
 			<td ng-repeat="(inning, position) in positions"  ng-controller="RosterPosition"><input type="text" position-autocomplete="autocompleteOptions" ng-model="position.value" ></input></td>
+			<td>{{benchCount(player)}}</td>
+			<td>{{dupePositions}}</td>
 		</tr>
-		<tr><td></td>
-			<td>{{availablePositionsForInning(1)}}</td>
-			<td>{{availablePositionsForInning(2)}}</td>
-			<td>{{availablePositionsForInning(3)}}</td>
-			<td>{{availablePositionsForInning(4)}}</td>
-			<td>{{availablePositionsForInning(5)}}</td>
-			<td>{{availablePositionsForInning(6)}}</td>
-		</tr> 
 	</tbody>
 </table>
 <input type="text" ng-model="newPlayer"><button ng-click="addPlayer(newPlayer)">Add</button>
+<table>
+	<thead>
+		<tr>
+			<th>Position</th>
+			<th>1</th>
+			<th>2</th>
+			<th>3</th>
+			<th>4</th>
+			<th>5</th>
+			<th>6</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="(position, na) in requiredPositions">
+			<td>{{position}}</td>
+			<td>{{positionFilled(position, 1)}}</td>
+			<td>{{positionFilled(position, 2)}}</td>
+			<td>{{positionFilled(position, 3)}}</td>
+			<td>{{positionFilled(position, 4)}}</td>
+			<td>{{positionFilled(position, 5)}}</td>
+			<td>{{positionFilled(position, 6)}}</td>
+		</tr>
+	</tbody>
+</table>
