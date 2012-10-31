@@ -1,1 +1,1 @@
-Now with (yeoman)[http://http://yeoman.io/]
+Now with [yeoman](http://http://yeoman.io/)
