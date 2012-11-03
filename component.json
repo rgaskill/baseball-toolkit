@@ -1,0 +1,9 @@
+{
+    "name": "bbtoolkit",
+    "version": "0.1",
+    "main":  "",
+    "dependencies": {
+        "jquery-ui": "~1.9.0"
+
+    }
+}
