@@ -127,9 +127,6 @@ baseballToolkitApp.controller('RosterPlayerCtrl', ['$scope','$log', function($sc
     $scope.editMode = false;
 
 
-    $scope.$watch('playerName', function(newValue, oldValue) {
-        $scope.updatePlayer(newValue, oldValue);
-    });
 
 
 
