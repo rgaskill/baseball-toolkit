@@ -85,8 +85,7 @@ baseballToolkitApp.controller('RosterCtrl', ['$scope','$log', function($scope, $
 
 
     $scope.setPosition = function(player, inning, position){
-        $scope.positionMap[player][inning].value =  position;
-        $scope.$digest();
+        $scope.positionMap[player][inning] =  position;
     };
 
     $scope.getPositionFromString = function(posString){
@@ -105,13 +104,14 @@ baseballToolkitApp.controller('RosterCtrl', ['$scope','$log', function($scope, $
 
 baseballToolkitApp.controller('RosterPositionCtrl', ['$scope','$log', function($scope, $log) {
 
+    $scope.$watch('position', function(newValue, oldValue) {
+        $scope.setPosition($scope.player, $scope.inning, newValue);
+    });
+
     $scope.positionAutoComplete =  {
         autoFocus: true,
-        messages: '',
+//        messages: '',
         delay: 0,
-        select: function(event, ui){
-            $scope.setPosition($scope.player,$scope.inning, ui.item.value);
-        },
         source: function(request, response) {
             response($scope.availablePositionsForInning(request.term, $scope.inning));
         }
