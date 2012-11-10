@@ -1,11 +1,15 @@
-/* line 6, ../../sass/main.scss */
+/* line 8, ../../sass/main.scss */
+.vertical-spacer {
+  height: 30px;
+}
+
+/* line 16, ../../sass/main.scss */
 #main {
   min-width: 950px;
   width: 95%;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
-  background-color: blue;
 }
 /* line 54, ../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_liquid.scss */
 #main .container {
@@ -803,14 +807,21 @@
   margin-right: -101.016%;
   margin-bottom: 0;
 }
-/* line 10, ../../sass/main.scss */
+/* line 19, ../../sass/main.scss */
+#main header {
+  height: 60px;
+}
+/* line 22, ../../sass/main.scss */
 #main #roster {
-  background-color: #9acd32;
   display: inline;
   float: left;
   overflow: hidden;
   width: 99.974%;
   margin-right: 1.042%;
+}
+/* line 24, ../../sass/main.scss */
+#main #roster table {
+  width: 100%;
 }
 /* line 2, ../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/tables/_scaffolding.scss */
 #main #roster table th {

@@ -3,15 +3,27 @@ $blueprint-liquid-container-width: 95%;
 @import "compass/utilities/tables/scaffolding";
 @import "blueprint/liquid";
 
+//body { font-size: 62.5%; }
+
+.vertical-spacer {
+  height: 30px;
+}
+
+th {
+  //padding: 5px;
+}
+
 #main {
   @include blueprint-liquid-grid;
   @include container;
-  background-color: blue;
+  header {
+    height: 60px;
+  }
   #roster {
-    background-color: #9acd32;
     @include column(24);
     table {
       @include table-scaffolding;
+      width: 100%;
     }
   }
 

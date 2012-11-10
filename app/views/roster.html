@@ -1,50 +1,55 @@
 <div id="roster">
-    <table>
-        <thead>
-            <tr>
-                <th>Player Name</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>Bench Count</th>
-                <th>Positons Played More Than Once</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="(player, positions) in positionMap">
-                <td>{{player}}</td>
-                <td ng-repeat="(inning, position) in positions"  ng-controller="RosterPositionCtrl"><input position-autocomplete="autocompleteOptions" ng-model="position.value" /></td>
-                <td>{{benchCount(player)}}</td>
-                <td>{{dupePositions}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <input type="text" ng-model="newPlayer"><button ng-click="addPlayer(newPlayer)">Add</button>
-    <table>
-        <thead>
-            <tr>
-                <th>Position</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="(position, na) in requiredPositions">
-                <td>{{position}}</td>
-                <td>{{positionFilled(position, 1)}}</td>
-                <td>{{positionFilled(position, 2)}}</td>
-                <td>{{positionFilled(position, 3)}}</td>
-                <td>{{positionFilled(position, 4)}}</td>
-                <td>{{positionFilled(position, 5)}}</td>
-                <td>{{positionFilled(position, 6)}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="position-entry" class="ui-widget-content">
+        <table>
+            <thead >
+                <tr>
+                    <th class="ui-widget-header">Player Name</th>
+                    <th class="ui-widget-header">1</th>
+                    <th class="ui-widget-header">2</th>
+                    <th class="ui-widget-header">3</th>
+                    <th class="ui-widget-header">4</th>
+                    <th class="ui-widget-header">5</th>
+                    <th class="ui-widget-header">6</th>
+                    <th class="ui-widget-header">Bench Count</th>
+                    <th class="ui-widget-header">Positons Played More Than Once</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(player, positions) in positionMap">
+                    <td>{{player}}</td>
+                    <td ng-repeat="(inning, position) in positions"><position-autocomplete ng-controller='RosterPositionCtrl' auto-complete="positionAutoComplete" list-click=true ng-model="positionMap[player][inning]"></position-autocomplete></td>
+                    <td>{{benchCount(player)}}</td>
+                    <td>{{dupePositions}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <input class="ui-widget" type="text" ng-model="newPlayer"><small><button bbtk-button ng-click="addPlayer(newPlayer)" >Add Player</button></small>
+    </div>
+    <div class="vertical-spacer"></div>
+    <div id="position-monitor" class="ui-widget-content">
+        <table>
+            <thead class="ui-widget-header">
+                <tr>
+                    <th class="ui-widget-header">Position</th>
+                    <th class="ui-widget-header">1</th>
+                    <th class="ui-widget-header">2</th>
+                    <th class="ui-widget-header">3</th>
+                    <th class="ui-widget-header">4</th>
+                    <th class="ui-widget-header">5</th>
+                    <th class="ui-widget-header">6</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(position, na) in requiredPositions">
+                    <td>{{position}}</td>
+                    <td>{{positionFilled(position, 1)}}</td>
+                    <td>{{positionFilled(position, 2)}}</td>
+                    <td>{{positionFilled(position, 3)}}</td>
+                    <td>{{positionFilled(position, 4)}}</td>
+                    <td>{{positionFilled(position, 5)}}</td>
+                    <td>{{positionFilled(position, 6)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
