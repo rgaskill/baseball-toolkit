@@ -1,7 +1,8 @@
 application: baseballtoolkit
-version: 3
-runtime: python
+version: 4
+runtime: python27
 api_version: 1
+threadsafe: true
 
 handlers:
 # re-direct to index.html if no path is give

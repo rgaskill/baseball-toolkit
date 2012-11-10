@@ -11,6 +11,18 @@ $blueprint-grid-margin: 10px;
 // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
+$default-top-margin: 2em;
+
+@import "compass/css3/border-radius";
+
 .hidden {
   display: none;;
+}
+
+#main, #main button {
+  font-size: .8em;
+}
+
+#main input {
+  @include border-radius;
 }

@@ -1,0 +1,33 @@
+
+@import 'base';
+@import 'compass/css3';
+@import "compass/css3/transition";
+
+#roster {
+  @include column(24);
+  table {
+    @include table-scaffolding;
+    width: 100%;
+  }
+
+  #position-monitor {
+    margin-top: $default-top-margin;
+  }
+
+  #add-player-input {
+    //@include transition(opacity 1s, linear, visibility 0s linear 0.21s);
+    @include transition-property(focus);
+    @include transition-duration(.2s);
+    @include transition-timing-function(ease-in);
+    width: 14em;
+    input {
+      margin: .5em;
+      width: 100%;
+    }
+  }
+
+  #add-player-input:focus {
+    width: 30em;
+
+  }
+}
