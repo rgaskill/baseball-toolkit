@@ -21,6 +21,9 @@ baseballToolkitApp.controller('RosterCtrl', ['$scope','$log', function($scope, $
 
 
     $scope.positionMap = {};
+    $scope.players = [];
+    $scope.innings = ["1","2","3","4","5","6"];
+
 
 
     $scope.benchCount = function(player){
@@ -48,13 +51,13 @@ baseballToolkitApp.controller('RosterCtrl', ['$scope','$log', function($scope, $
     $scope.addPlayer = function(newPlayer){
         $log.log(newPlayer);
         $scope.positionMap[newPlayer] = angular.copy(emptyPositions);
+        $scope.players.push(newPlayer);
     };
 
-    $scope.availablePositionsForPlayer = function(player, inning) {
-
-
-
-    };
+    $scope.updatePlayer = function(newValue, oldValue){
+        $scope.positionMap[newValue] = $scope.positionMap[oldValue];
+        delete $scope.positionMap[oldValue];
+    }
 
     $scope.availablePositionsForInning = function(partial, inning) {
 
@@ -116,5 +119,18 @@ baseballToolkitApp.controller('RosterPositionCtrl', ['$scope','$log', function($
             response($scope.availablePositionsForInning(request.term, $scope.inning));
         }
     };
+
+}]);
+
+baseballToolkitApp.controller('RosterPlayerCtrl', ['$scope','$log', function($scope, $log) {
+
+    $scope.editMode = false;
+
+
+    $scope.$watch('playerName', function(newValue, oldValue) {
+        $scope.updatePlayer(newValue, oldValue);
+    });
+
+
 
 }]);

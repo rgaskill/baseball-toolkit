@@ -57,6 +57,11 @@ a img {
   border: none;
 }
 
+/* line 14, ../../sass/partials/_base.scss */
+.hidden {
+  display: none;
+}
+
 /* line 20, ../../sass/screen.scss */
 body.bp {
   line-height: 1.5;

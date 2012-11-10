@@ -15,9 +15,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(player, positions) in positionMap">
-                    <td>{{player}}</td>
-                    <td ng-repeat="(inning, position) in positions"><position-autocomplete ng-controller='RosterPositionCtrl' auto-complete="positionAutoComplete" list-click=true ng-model="position"></position-autocomplete></td>
+                <tr ng-repeat="player in players" ng-controller="RosterPlayerCtrl">
+                    <td ><span  ng-click="editMode=true" ng-class="{hidden: editMode}">{{player}}</span><input ng-class="{hidden: !editMode}" ng-model="player"/></td>
+                    <td ng-repeat="inning in innings" ng-init="position = positionMap[player][inning]">
+                        <position-autocomplete ng-controller='RosterPositionCtrl' auto-complete="positionAutoComplete" list-click=true ng-model="position"></position-autocomplete>
+                    </td>
                     <td>{{benchCount(player)}}</td>
                     <td>{{dupePositions}}</td>
                 </tr>
