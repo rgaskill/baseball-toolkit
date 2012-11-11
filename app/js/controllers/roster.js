@@ -50,11 +50,30 @@ define(['Angular'],function(angular) {
 
 
         $scope.addPlayer = function(newPlayer){
-            $log.log(newPlayer);
+
+            var splitVals = newPlayer.split(" ");
+            var numberString = splitVals.slice(-1).pop();
+            var number = parseInt(numberString);
+            var nameArray = splitVals.slice(0, -1);
+            var name = "";
+            $log.log(name);
+            $log.log(number);
+
+
+            if ( !angular.isNumber(number) || isNaN(number) ){
+                nameArray.push(numberString);
+                number = undefined;
+            }
+
+            name = nameArray.join(" ");
+
+            $log.log(name);
+            $log.log(number);
+
             var player = {};
             player.name = newPlayer;
-            $scope.positionMap[newPlayer] = angular.copy(emptyPositions);
-            $scope.players.push(newPlayer);
+            $scope.positionMap[name] = angular.copy(emptyPositions);
+            $scope.players.push(name);
             $scope.newPlayer = undefined;
         };
 

@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="player in players" ng-controller="RosterPlayerCtrl">
-                    <td ng-click="editMode=true"><span  ng-class="{hidden: editMode}">{{playerName}}</span><input on-enter-keyup="updatePlayer(playerName, player); editMode=false;"  ng-class="{hidden: !editMode}" ng-model="playerName"/></td>
+                    <td ng-click="editMode=true" ng-init="playerName = player;"><span  ng-class="{hidden: editMode}">{{playerName}}</span><input on-enter-keyup="updatePlayer(playerName, player); editMode=false;"  ng-class="{hidden: !editMode}" ng-model="playerName"/></td>
                     <td ng-repeat="inning in innings" ng-init="position = positionMap[player][inning]">
                         <position-autocomplete ng-controller='RosterPositionCtrl' auto-complete="positionAutoComplete" list-click=true ng-model="position"></position-autocomplete>
                     </td>
