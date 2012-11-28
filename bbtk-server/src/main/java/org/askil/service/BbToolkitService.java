@@ -1,5 +1,7 @@
 package org.askil.service;
 
+import org.askil.service.domain.Test;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,9 +19,9 @@ public class BbToolkitService {
 
     @GET
     @Path("/test")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String test(){
-        return "Hello World";
+    @Produces(MediaType.APPLICATION_JSON)
+    public Test test(){
+        return new Test("Hello", "World");
     }
 
 }
