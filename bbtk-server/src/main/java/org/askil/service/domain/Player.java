@@ -1,5 +1,7 @@
 package org.askil.service.domain;
 
+import com.google.appengine.api.datastore.Entity;
+
 /**
  * Created with IntelliJ IDEA.
  * User: roarkegaskill
@@ -9,8 +11,20 @@ package org.askil.service.domain;
  */
 public class Player {
 
+    private Long id;
     private String name;
     private String number;
+
+    public Player() {
+
+    }
+
+    public Player(Entity entity){
+        this.id = entity.getKey().getId();
+        name = (String) entity.getProperty("name");
+        number = (String) entity.getProperty("number");
+    }
+
 
     public String getName() {
         return name;
@@ -26,5 +40,13 @@ public class Player {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

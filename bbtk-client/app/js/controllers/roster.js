@@ -2,7 +2,7 @@
 
 define(['Angular'],function(angular) {
     'use strict';
-    angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope','$log', function($scope, $log) {
+    angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope','$log', 'BbtkService', function($scope, $log, BbtkService) {
 //
         var BENCH = {id: 0, label:"Bench"};
         var emptyPositions = {"1": BENCH,"2": BENCH,"3": BENCH,"4": BENCH,"5": BENCH,"6": BENCH};
@@ -52,6 +52,8 @@ define(['Angular'],function(angular) {
 
         $scope.addPlayer = function(newPlayer){
 
+
+
             var splitVals = newPlayer.split(" ");
             var numberString = splitVals.slice(-1).pop();
             var number = parseInt(numberString);
@@ -70,6 +72,9 @@ define(['Angular'],function(angular) {
 
             $log.log(name);
             $log.log(number);
+
+            var rPlayer = new BbtkService.Player({name: name, number: number});
+            rPlayer.$save();
 
             var player = {};
             player.name = newPlayer;
