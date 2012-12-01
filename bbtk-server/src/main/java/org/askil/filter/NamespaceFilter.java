@@ -1,10 +1,12 @@
 package org.askil.filter;
 
 import com.google.appengine.api.NamespaceManager;
+import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
 
 import javax.servlet.*;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,15 +17,21 @@ import java.io.IOException;
  */
 public class NamespaceFilter implements Filter {
 
+    private static final Logger log = Logger.getLogger(NamespaceFilter.class.getName());
+
     public void init(FilterConfig filterConfig) throws ServletException {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         if (NamespaceManager.get() == null) {
-            // Assuming there is a logged in user.
-            String namespace = UserServiceFactory.getUserService().getCurrentUser().getUserId();
-            NamespaceManager.set(namespace);
+            User user = UserServiceFactory.getUserService().getCurrentUser();
+            if ( user != null ){
+                String namespace = user.getUserId();
+                log.info("namespace"+ namespace);
+                NamespaceManager.set(namespace);
+            }
+
         }
         filterChain.doFilter(servletRequest,servletResponse);
     }

@@ -49,6 +49,24 @@
                 </configuration>
 
             </plugin>
+            <plugin>
+                <groupId>net.kindleit</groupId>
+                <artifactId>maven-gae-plugin</artifactId>
+                <version>0.9.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.kindleit</groupId>
+                        <artifactId>gae-runtime</artifactId>
+                        <version>1.7.3</version>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <serverId>appengine.google.com</serverId>
+                    <sdkDir>/Users/roarkegaskill/Developer/appengine-java-sdk-1.7.3</sdkDir>
+                    <appDir>${basedir}/target/bb-toolkit</appDir>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
