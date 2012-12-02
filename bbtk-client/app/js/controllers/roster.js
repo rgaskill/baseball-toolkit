@@ -4,32 +4,33 @@ define(['Angular'],function(angular) {
     'use strict';
     angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope','$log', 'BbtkService', function($scope, $log, BbtkService) {
 //
-        var BENCH = {id: 0, label:"Bench"};
-        var emptyPositions = {"1": BENCH,"2": BENCH,"3": BENCH,"4": BENCH,"5": BENCH,"6": BENCH};
+        var emptyPositions = [{inning:1, label:"Bench"},
+            {inning:2, label:"Bench"},
+            {inning:3, label:"Bench"},
+            {inning:4, label:"Bench"},
+            {inning:5, label:"Bench"},
+            {inning:6, label:"Bench"}];
 
 
         //this needs to be positonList and be an array of objects
-        $scope.requiredPositions = {"P": {id: 1, label: 'P'},
-            "C": {id: 2, label: 'C'},
-            "1B": {id: 3, label: '1B'},
-            "2B": {id: 4, label: '2B'},
-            "3B": {id: 5, label: '3B'},
-            "SS": {id: 6, label: 'SS'},
-            "RF": {id: 7, label: 'RF'},
-            "RC": {id: 8, label: 'RC'},
-            "LC": {id: 9, label: 'LC'},
-            "LF": {id: 10, label: 'LF'}
+        $scope.requiredPositions = {"P": "P",
+            "C": "C",
+            "1B": "1B",
+            "2B": "2B",
+            "3B": "3B",
+            "SS": "SS",
+            "RF": "RF",
+            "RC": "RC",
+            "LC": "LC",
+            "LF": "LF"
         };
 
+        $scope.players = BbtkService.Player.query();
 
-        $scope.positionMap = {};
-        $scope.players = [];
         $scope.innings = ["1","2","3","4","5","6"];
 
-
-
         $scope.benchCount = function(player){
-            var pos = $scope.positionMap[player];
+            var pos = player.positions;
             var count = 0;
             angular.forEach(pos, function(value,key) {
                 if ( value.label === 'Bench') {
@@ -41,8 +42,8 @@ define(['Angular'],function(angular) {
 
         $scope.positionFilled = function(position, inning) {
             var ret = '';
-            angular.forEach ( $scope.positionMap, function (value, key) {
-                if ( value[inning].label === position ){
+            angular.forEach ( $scope.players, function (player) {
+                if ( player.positions[inning-1].label === position ){
                     ret = 'X';
                 }
             });
@@ -73,79 +74,59 @@ define(['Angular'],function(angular) {
             $log.log(name);
             $log.log(number);
 
-            var rPlayer = new BbtkService.Player({name: name, number: number});
+            var rPlayer = new BbtkService.Player({name: name, number: number, positions: angular.copy(emptyPositions)});
             rPlayer.$save();
 
-            var player = {};
-            player.name = newPlayer;
-            $scope.positionMap[name] = angular.copy(emptyPositions);
-            $scope.players.push(name);
+            $scope.players.push(rPlayer);
             $scope.newPlayer = undefined;
         };
-
-        $scope.updatePlayer = function(newValue, oldValue){
-            $scope.positionMap[newValue] = $scope.positionMap[oldValue];
-            delete $scope.positionMap[oldValue];
-        }
 
         $scope.availablePositionsForInning = function(partial, inning) {
 
             var positions = angular.copy($scope.requiredPositions);
             var ret = [];
 
-            angular.forEach(positions, function(value, key) {
-                if ( key.indexOf(partial.toUpperCase()) != 0 ){
-                    delete this[key];
+            angular.forEach(positions, function(pos) {
+                if ( pos.indexOf(partial.toUpperCase()) != 0 ){
+                    delete this[pos];
                 }
             }, positions);
 
-            angular.forEach ( $scope.positionMap, function (inningMap, player) {
-                delete this[inningMap[inning].label];
+            angular.forEach ( $scope.players, function (player) {
+                delete this[player.positions[inning-1].label];
             }, positions);
 
 
 
-            angular.forEach ( positions, function (value, key) {
-                this.push(value);
+            angular.forEach ( positions, function (posKey, pos) {
+                this.push(pos);
             }, ret);
 
-            ret.push(BENCH);
+            ret.push('Bench');
 
             return ret;
 
         };
 
-
-        $scope.setPosition = function(player, inning, position){
-            $scope.positionMap[player][inning] =  position;
-        };
-
-        $scope.getPositionFromString = function(posString){
-            return $scope.requiredPositions[posString];
-        };
-
-        $scope.isPositionValid = function(player, inning, pos ){
-
-        };
-
-
-
-
-
     }]);
 
     angular.module('bbToolkit.controllers').controller('RosterPositionCtrl', ['$scope','$log', function($scope, $log) {
 
-        $scope.$watch('position', function(newValue, oldValue) {
-            $scope.setPosition($scope.player, $scope.inning, newValue);
-        });
 
         $scope.positionAutoComplete =  {
             autoFocus: true,
 //        messages: '',
             delay: 0,
             source: function(request, response) {
-                response($scope.availablePositionsForInning(request.term, $scope.inning));
+                response($scope.availablePositionsForInning(request.term, $scope.position.inning));
+            },
+            select: function( event, ui ) {
+                console.log("position", ui.item);
+                $scope.$apply(function() {
+                    $scope.position.label = ui.item.value;
+                    $scope.player.$save();
+                });
+
             }
         };
 

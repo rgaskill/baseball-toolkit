@@ -5,6 +5,7 @@ requirejs.config({
         jQueryUi: 'vendor/jquery-ui',
         Angular: 'vendor/angular',
         AngularResource: 'vendor/angular-resource.min',
+        AngularUi: 'vendor/angular-ui',
         Controllers: 'controllers/controllers',
         Directives: 'directives/directives',
         Services: 'services/services'
@@ -18,15 +19,20 @@ requirejs.config({
         'AngularResource': {
             deps: ['Angular'],
             exports: 'angularResource'
+        },
+        'AngularUi': {
+            deps: ['Angular'],
+            exports: 'angularUi'
         }
     }
 
 });
 
 requirejs([
-    'jQuery'
-    , 'Angular'
-    , 'AngularResource'
+    'jQuery',
+    'Angular',
+    'AngularResource',
+    'AngularUi'
 ], function(jQuery, angular){
 
     angular.module('bbToolkit.services',['ngResource']);
@@ -35,7 +41,7 @@ requirejs([
 
     angular.module('bbToolkit.controllers',[]);
 
-    angular.module('bbToolkit', ['bbToolkit.services', 'bbToolkit.controllers', 'bbToolkit.directives']);
+    angular.module('bbToolkit', ['bbToolkit.services', 'bbToolkit.controllers', 'bbToolkit.directives', 'ui']);
 
     requirejs(['Controllers'
         ,'Directives'

@@ -5,21 +5,19 @@
             <thead >
                 <tr>
                     <th class="ui-widget-header">Player Name</th>
-                    <th class="ui-widget-header">1</th>
-                    <th class="ui-widget-header">2</th>
-                    <th class="ui-widget-header">3</th>
-                    <th class="ui-widget-header">4</th>
-                    <th class="ui-widget-header">5</th>
-                    <th class="ui-widget-header">6</th>
+                    <th ng-repeat="inning in innings" class="ui-widget-header">{{inning}}</th>
                     <th class="ui-widget-header">Bench Count</th>
                     <th class="ui-widget-header">Positons Played More Than Once</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="player in players" ng-controller="RosterPlayerCtrl">
-                    <td ng-click="editMode=true" ng-init="playerName = player;"><span  ng-class="{hidden: editMode}">{{playerName}}</span><input on-enter-keyup="updatePlayer(playerName, player); editMode=false;"  ng-class="{hidden: !editMode}" ng-model="playerName"/></td>
-                    <td ng-repeat="inning in innings" ng-init="position = positionMap[player][inning]">
-                        <position-autocomplete ng-controller='RosterPositionCtrl' auto-complete="positionAutoComplete" list-click=true ng-model="position"></position-autocomplete>
+                    <td ng-click="editMode=true" ng-init="playerName = player.name">
+                        <span  ng-class="{hidden: editMode}">{{playerName}}</span>
+                        <input on-enter-keyup="editMode=false; player.name = playerName; player.$save();"  ng-class="{hidden: !editMode}" ng-model="playerName"/>
+                    </td>
+                    <td ng-repeat="inning in innings" ng-init="position = player.positions[inning-1]">
+                        <input ui-jq="autocomplete" ui-options="positionAutoComplete" ng-controller='RosterPositionCtrl' list-click=true  ng-model="position" value="{{position.label}}">
                     </td>
                     <td>{{benchCount(player)}}</td>
                     <td>{{dupePositions}}</td>
@@ -34,16 +32,11 @@
             <thead class="ui-widget-header">
                 <tr>
                     <th class="ui-widget-header">Position</th>
-                    <th class="ui-widget-header">1</th>
-                    <th class="ui-widget-header">2</th>
-                    <th class="ui-widget-header">3</th>
-                    <th class="ui-widget-header">4</th>
-                    <th class="ui-widget-header">5</th>
-                    <th class="ui-widget-header">6</th>
+                    <th ng-repeat="inning in innings" class="ui-widget-header">{{inning}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(position, na) in requiredPositions">
+                <tr ng-repeat="position in requiredPositions">
                     <td>{{position}}</td>
                     <td>{{positionFilled(position, 1)}}</td>
                     <td>{{positionFilled(position, 2)}}</td>

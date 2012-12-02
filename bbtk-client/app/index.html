@@ -14,6 +14,18 @@
         <!--[if lt IE 8]>
         <link href="css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
         <![endif]-->
+        <!--[if lte IE 8]>
+        <script>
+            // The ieshiv takes care of our ui.directives, bootstrap module directives and
+            // AngularJS's ng-view, ng-include, ng-pluralize and ng-switch directives.
+            // However, IF you have custom directives (yours or someone else's) then
+            // enumerate the list of tags in window.myCustomTags
+
+           // window.myCustomTags = [ 'yourDirective', 'somebodyElsesDirective' ]; // optional
+        </script>
+        <script src="js/vendor/angular-ui-ieshiv.js"></script>
+        <![endif]-->
+
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="css/smoothness/jquery-ui.css"/>
 

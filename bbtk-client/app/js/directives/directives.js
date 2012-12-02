@@ -1,4 +1,5 @@
-define(['directives/autocomplete'
-    ,'directives/onEnterKeyup'
-    ,'directives/button'
+define(['directives/autocomplete',
+    'directives/onEnterKeyup',
+    'directives/button',
+    'directives/listClick'
 ], {});
