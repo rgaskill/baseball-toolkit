@@ -28,10 +28,54 @@ public class BbToolkitService {
     private static final String POSITION = "Position";
 
     @GET
-    @Path("/test")
+    @Path("/clearpositions")
     @Produces(MediaType.APPLICATION_JSON)
-    public Test test(){
-        return new Test("Hello", "World");
+    public List<Player> clearPositions(){
+        DatastoreService dataStore = DatastoreServiceFactory.getDatastoreService();
+        TransactionOptions options = TransactionOptions.Builder.withXG(true);
+
+        Query q = new Query(PLAYER);
+
+            ArrayList<Player> ret = new ArrayList<Player>();
+            PreparedQuery pq = dataStore.prepare(q);
+
+
+            for (Entity playerEntity: pq.asIterable()) {
+                Player player = new Player(playerEntity);
+
+                Transaction txn = dataStore.beginTransaction();
+
+                try {
+                    Query posQ = new Query(POSITION, playerEntity.getKey());
+                    PreparedQuery posPq = dataStore.prepare(posQ);
+                    ArrayList<Entity> positionList = new ArrayList<Entity>();
+                    ArrayList<Position> retPosList = new ArrayList<Position>();
+                    for (Entity positionEntity : posPq.asIterable()) {
+                        positionEntity.setProperty("label", "Bench");
+                        positionList.add(positionEntity);
+
+                        Position pos = new Position(positionEntity);
+                        retPosList.add(pos);
+                    }
+                    dataStore.put(positionList);
+                    txn.commit();
+                    positionList.clear();
+                    player.setPositions(retPosList);
+                } finally {
+                    if ( txn.isActive() ){
+                        txn.rollback();
+                    }
+                }
+
+                ret.add(player);
+
+            }
+
+
+
+
+
+        return ret;
     }
 
     @GET
