@@ -1,4 +1,4 @@
-define(['Angular'],function(angular) {
+define(['Angular', 'bbtkApp'],function(angular) {
 
     angular.module('bbToolkit.services').factory('BbtkService', ['$resource', function($resource) {
 

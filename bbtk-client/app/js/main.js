@@ -5,17 +5,13 @@ requirejs.config({
         jQueryUi: 'vendor/jquery-ui',
         Angular: 'vendor/angular',
         AngularResource: 'vendor/angular-resource.min',
-        AngularUi: 'vendor/angular-ui',
-        Controllers: 'controllers/controllers',
-        Directives: 'directives/directives',
-        Services: 'services/services'
+        AngularUi: 'vendor/angular-ui'
     },
 
     shim: {
-        'Modernizr': {exports: 'Modernizr'},
-        'jQuery': {exports: 'jQuery'},
+        'jQuery': {},
         'jQueryUi': {deps:['jQuery']},
-        'Angular': {exports: 'angular'},
+        'Angular': {deps: ['jQuery'], exports: 'angular'},
         'AngularResource': {
             deps: ['Angular'],
             exports: 'angularResource'
@@ -31,33 +27,11 @@ requirejs.config({
 requirejs([
     'jQuery',
     'Angular',
-    'AngularResource',
-    'AngularUi'
+    'bbtk'
 ], function(jQuery, angular){
 
-    angular.module('bbToolkit.services',['ngResource']);
-
-    angular.module('bbToolkit.directives',[]);
-
-    angular.module('bbToolkit.controllers',[]);
-
-    angular.module('bbToolkit', ['bbToolkit.services', 'bbToolkit.controllers', 'bbToolkit.directives', 'ui']);
-
-    requirejs(['Controllers'
-        ,'Directives'
-        ,'Services'
-    ], function(){
-
-        angular.module('bbToolkit')
-            .config(['$routeProvider', function($routeProvider) {
-//    $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: MyCtrl1});
-            $routeProvider.when('/roster', {templateUrl: 'views/roster.html', controller: 'RosterCtrl'});
-            $routeProvider.otherwise({redirectTo: '/roster'});
-        }]);
-
-        angular.element(document).ready(function() {
-            angular.bootstrap(document, ['bbToolkit']);
-        });
+    angular.element(document).ready(function() {
+        angular.bootstrap(document, ['bbToolkit']);
     });
 
 });

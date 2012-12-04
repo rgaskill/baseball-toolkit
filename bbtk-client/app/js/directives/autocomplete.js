@@ -1,4 +1,4 @@
-define(['Angular'],function(angular) {
+define(['Angular', 'bbtkApp', 'jQueryUi'],function(angular) {
 
     angular.module('bbToolkit.directives').directive('positionAutocomplete', function() {
         return {

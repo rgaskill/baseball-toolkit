@@ -1,4 +1,4 @@
-define(['Angular','jQueryUi'],function(angular) {
+define(['Angular', 'bbtkApp','jQueryUi'],function(angular) {
 
     angular.module('bbToolkit.directives').directive('button',function() {
         return {

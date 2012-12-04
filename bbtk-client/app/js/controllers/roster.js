@@ -1,6 +1,6 @@
 
 
-define(['Angular'],function(angular) {
+define(['Angular', 'bbtkApp'],function(angular) {
     'use strict';
     angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope','$log', 'BbtkService', function($scope, $log, BbtkService) {
 //

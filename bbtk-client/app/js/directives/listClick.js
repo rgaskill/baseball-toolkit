@@ -1,4 +1,4 @@
-define(['Angular'],function(angular) {
+define(['Angular', 'bbtkApp', 'jQueryUi'],function(angular) {
 
     angular.module('bbToolkit.directives').directive('listClick', function() {
         return function(scope, elm, attrs){

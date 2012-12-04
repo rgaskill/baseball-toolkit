@@ -1,4 +1,4 @@
-define(['Angular'],function(angular) {
+define(['Angular', 'bbtkApp'],function(angular) {
 
     angular.module('bbToolkit.directives').directive('onEnterKeyup', ['$parse', function($parse) {
         return function(scope, elm, attrs) {
