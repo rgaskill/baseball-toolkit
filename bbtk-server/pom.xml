@@ -43,7 +43,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>../bbtk-client/app</directory>
+                            <directory>../bbtk-client/build</directory>
                         </resource>
                     </webResources>
                 </configuration>
