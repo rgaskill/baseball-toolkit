@@ -1,5 +1,7 @@
 package org.askil.service.domain;
 
+import com.google.appengine.api.datastore.Entity;
+
 /**
  * Created with IntelliJ IDEA.
  * User: roarkegaskill
@@ -11,6 +13,15 @@ public class Position {
 
     private Long inning;
     private String label;
+
+    public Position() {
+
+    }
+
+    public Position(Entity entity) {
+        inning = (Long) entity.getProperty("inning");
+        label = (String) entity.getProperty("label");
+    }
 
     public Long getInning() {
         return inning;
