@@ -3,6 +3,7 @@ define([
     'AngularResource',
     'AngularUi'
 ], function(angular) {
+    'use strict';
 
     angular.module('bbToolkit.services',['ngResource']);
 

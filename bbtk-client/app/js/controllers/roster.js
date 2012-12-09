@@ -2,7 +2,10 @@
 
 define(['Angular', 'bbtkApp'],function(angular) {
     'use strict';
-    angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope','$log', 'BbtkService', function($scope, $log, BbtkService) {
+    angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope',
+        '$log',
+        'BbtkService',
+        function($scope, $log, BbtkService) {
 //
         var emptyPositions = [{inning:1, label:"Bench"},
             {inning:2, label:"Bench"},
@@ -57,7 +60,7 @@ define(['Angular', 'bbtkApp'],function(angular) {
 
             var splitVals = newPlayer.split(" ");
             var numberString = splitVals.slice(-1).pop();
-            var number = parseInt(numberString);
+            var number = parseInt(numberString,10);
             var nameArray = splitVals.slice(0, -1);
             var name = "";
             $log.log(name);
@@ -87,7 +90,7 @@ define(['Angular', 'bbtkApp'],function(angular) {
             var ret = [];
 
             angular.forEach(positions, function(pos) {
-                if ( pos.indexOf(partial.toUpperCase()) != 0 ){
+                if ( pos.indexOf(partial.toUpperCase()) !== 0 ){
                     delete this[pos];
                 }
             }, positions);
@@ -121,7 +124,7 @@ define(['Angular', 'bbtkApp'],function(angular) {
                 response($scope.availablePositionsForInning(request.term, $scope.position.inning));
             },
             select: function( event, ui ) {
-                console.log("position", ui.item);
+                $log.info("position", ui.item);
                 $scope.$apply(function() {
                     $scope.position.label = ui.item.value;
                     $scope.player.$save();

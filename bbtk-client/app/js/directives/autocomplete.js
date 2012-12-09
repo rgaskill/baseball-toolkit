@@ -1,5 +1,5 @@
 define(['Angular', 'bbtkApp', 'jQueryUi'],function(angular) {
-
+    'use strict';
     angular.module('bbToolkit.directives').directive('positionAutocomplete', function() {
         return {
             template: '<input type="text"></input>',
@@ -65,7 +65,7 @@ define(['Angular', 'bbtkApp', 'jQueryUi'],function(angular) {
                     }
 
                     if ( attrs.validateRequired ){
-                        var valid = obj['id'];
+                        var valid = obj.id;
                         if ( valid ){
                             element.removeClass('ui-state-error');
                         } else {

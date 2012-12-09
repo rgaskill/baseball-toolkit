@@ -1,5 +1,5 @@
 define(['Angular', 'bbtkApp', 'jQueryUi'],function(angular) {
-
+    'use strict';
     angular.module('bbToolkit.directives').directive('listClick', function() {
         return function(scope, elm, attrs){
             elm.autocomplete( "option", "minLength", 0 );

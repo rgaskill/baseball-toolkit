@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
 
     paths: {
         jQuery: 'vendor/jquery',
@@ -24,12 +24,12 @@ requirejs.config({
 
 });
 
-requirejs([
+require([
     'jQuery',
     'Angular',
     'bbtk'
 ], function(jQuery, angular){
-
+    'use strict';
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['bbToolkit']);
     });
