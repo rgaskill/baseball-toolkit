@@ -4,9 +4,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Project configuration.
     grunt.initConfig({
+        copy: {
+            dist: {
+                files: {
+                    '../bbtk-server/target/bb-toolkit/': 'app/**'
+                }
+            }
+        },
         jshint: {
             all: [
                 'app/js/controllers/**/*.js',
@@ -42,9 +50,20 @@ module.exports = function (grunt) {
         },
 
         watch: {
-            scripts: {
+            dev: {
+                files: 'app/**/*',
+                tasks: ['jshint','copy:dist'],
+                options: {   //grunt-contrib-watch issue #13 requires this. https://github.com/gruntjs/grunt-contrib-watch/issues/13
+                    forceWatchMethod: 'old'
+                }
+
+            },
+            scripts: { //grunt-contrib-watch issue #13 requires this. https://github.com/gruntjs/grunt-contrib-watch/issues/13
                 files: 'app/js/**/*.js',
-                tasks: ['jshint']
+                tasks: ['jshint'],
+                options: {
+                    forceWatchMethod: 'old'
+                }
             }
         },
 
@@ -67,5 +86,6 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('build', ['jshint', 'requirejs']);
+    grunt.registerTask('dev', ['watch:dev']);
 
 };

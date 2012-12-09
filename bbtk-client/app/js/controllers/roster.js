@@ -12,7 +12,6 @@ define(['Angular', 'bbtkApp'],function(angular) {
             {inning:5, label:"Bench"},
             {inning:6, label:"Bench"}];
 
-
         //this needs to be positonList and be an array of objects
         $scope.requiredPositions = {"P": "P",
             "C": "C",
@@ -109,7 +108,6 @@ define(['Angular', 'bbtkApp'],function(angular) {
     }]);
 
     angular.module('bbToolkit.controllers').controller('RosterPositionCtrl', ['$scope','$log', function($scope, $log) {
-
 
         $scope.positionAutoComplete =  {
             autoFocus: true,

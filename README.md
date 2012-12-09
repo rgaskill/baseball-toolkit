@@ -22,3 +22,15 @@ By default the client js will be concatinated and minified. If you don't want to
 
     mvn gae:run -Pdev     #run local instance
     mvn gae:deploy -Pdev  #deploy to gae
+
+Development Environmant
+-----------------------
+
+For now the easiest thing to do is to start the gae dev server then start the client dev watch to copy changes
+into the server dir.
+
+    cd bbtk-server
+    mvn gae:run -Pdev
+
+    cd bbtk-client
+    grunt dev
