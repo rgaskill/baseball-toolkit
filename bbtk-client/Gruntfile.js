@@ -3,6 +3,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
     // Project configuration.
     grunt.initConfig({
@@ -45,10 +46,26 @@ module.exports = function (grunt) {
                 files: 'app/js/**/*.js',
                 tasks: ['jshint']
             }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    appDir: 'app',
+                    baseUrl: 'js',
+                    dir: 'build',
+                    mainConfigFile: 'app/js/requireConfig.js',
+                    modules: [
+                        {name: 'main'},
+                        {name: 'bbtk'}
+                    ]
+                }
+            }
         }
     });
 
     // Default task.
     grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('build', ['jshint', 'requirejs']);
 
 };
