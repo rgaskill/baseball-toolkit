@@ -1,5 +1,3 @@
-
-
 define(['Angular', 'bbtkApp'],function(angular) {
     'use strict';
     angular.module('bbToolkit.controllers').controller('RosterCtrl', ['$scope',
@@ -53,10 +51,7 @@ define(['Angular', 'bbtkApp'],function(angular) {
             return ret;
         };
 
-
         $scope.addPlayer = function(newPlayer){
-
-
 
             var splitVals = newPlayer.split(" ");
             var numberString = splitVals.slice(-1).pop();
@@ -129,23 +124,14 @@ define(['Angular', 'bbtkApp'],function(angular) {
                     $scope.position.label = ui.item.value;
                     $scope.player.$save();
                 });
-
             }
         };
 
     }]);
 
-
     angular.module('bbToolkit.controllers').controller('RosterPlayerCtrl', ['$scope','$log', function($scope, $log) {
-
         $scope.editMode = false;
-
-
-
-
-
     }]);
-
 
 });
 
