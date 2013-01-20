@@ -1,9 +1,16 @@
-@import "blueprint";
+$blueprint-liquid-container-width: 95%;
 
-// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
-// @include blueprint-print
+@import "compass/utilities/tables/scaffolding";
+@import "blueprint/liquid";
+@import "partials/roster";
 
-//Recommended Blueprint configuration with scoping and semantic layout:
-body.bp {
-  @include blueprint-print(true);
+
+//body { font-size: 62.5%; }
+
+#main {
+  @include blueprint-liquid-grid;
+  @include container;
+  header {
+    height: 60px;
+  }
 }

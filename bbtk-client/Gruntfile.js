@@ -60,10 +60,7 @@ module.exports = function (grunt) {
             },
             scripts: { //grunt-contrib-watch issue #13 requires this. https://github.com/gruntjs/grunt-contrib-watch/issues/13
                 files: 'app/js/**/*.js',
-                tasks: ['jshint'],
-                options: {
-                    forceWatchMethod: 'old'
-                }
+                tasks: ['jshint']
             }
         },
 
