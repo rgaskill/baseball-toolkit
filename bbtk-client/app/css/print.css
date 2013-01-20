@@ -1,103 +1,100 @@
-/* line 18, ../../sass/partials/_base.scss */
-.hidden {
+/* line 3, ../../sass/print.scss */
+body {
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: black;
+  background: none;
+  font-size: 10pt;
+}
+/* line 45, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body .container {
+  background: none;
+}
+/* line 47, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body hr {
+  background: #cccccc;
+  color: #cccccc;
+  width: 100%;
+  height: 2px;
+  margin: 2em 0;
+  padding: 0;
+  border: none;
+}
+/* line 55, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body hr.space {
+  background: white;
+  color: white;
+}
+/* line 58, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+/* line 60, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body code {
+  font-size: 0.9em;
+  font-family: "andale mono", "lucida console", monospace;
+}
+/* line 65, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body a img {
+  border: none;
+}
+/* line 68, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body a:link, body a:visited {
+  background: transparent;
+  font-weight: 700;
+  text-decoration: underline;
+}
+/* line 72, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body p img.top {
+  margin-top: 0;
+}
+/* line 74, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body blockquote {
+  margin: 1.5em;
+  padding: 1em;
+  font-style: italic;
+  font-size: 0.9em;
+}
+/* line 79, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body .small {
+  font-size: 0.9em;
+}
+/* line 81, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body .large {
+  font-size: 1.1em;
+}
+/* line 83, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body .quiet {
+  color: #999999;
+}
+/* line 85, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_print.scss */
+body .hide {
   display: none;
 }
-
-/* line 22, ../../sass/partials/_base.scss */
-#main, #main button {
-  font-size: .8em;
-}
-
-/* line 26, ../../sass/partials/_base.scss */
-#main input {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-}
-
-/* line 6, ../../sass/partials/_roster.scss */
-#roster {
-  display: inline;
-  float: left;
-  overflow: hidden;
-  width: 99.974%;
-  margin-right: 1.042%;
-}
-/* line 8, ../../sass/partials/_roster.scss */
-#roster table {
-  width: 100%;
-}
-/* line 2, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/tables/_scaffolding.scss */
-#roster table th {
-  text-align: center;
-  font-weight: bold;
-}
-/* line 6, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/tables/_scaffolding.scss */
-#roster table td,
-#roster table th {
-  padding: 2px;
-}
-/* line 8, ../../../../../.rvm/gems/ruby-1.9.3-p286/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/tables/_scaffolding.scss */
-#roster table td.numeric,
-#roster table th.numeric {
-  text-align: right;
-}
-/* line 13, ../../sass/partials/_roster.scss */
-#roster #position-monitor {
-  margin-top: 2em;
-}
-/* line 17, ../../sass/partials/_roster.scss */
-#roster #add-player-input {
-  -webkit-transition-property: focus;
-  -moz-transition-property: focus;
-  -o-transition-property: focus;
-  transition-property: focus;
-  -webkit-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  -o-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
-  width: 14em;
-}
-/* line 23, ../../sass/partials/_roster.scss */
-#roster #add-player-input input {
-  margin: .5em;
-  width: 100%;
-}
-/* line 29, ../../sass/partials/_roster.scss */
-#roster #add-player-input:focus {
-  width: 30em;
-}
-
-/* line 9, ../../sass/print.scss */
+/* line 5, ../../sass/print.scss */
 body #position-monitor {
   display: none;
 }
-/* line 12, ../../sass/print.scss */
+/* line 8, ../../sass/print.scss */
 body #add-player-input {
   display: none;
 }
-/* line 15, ../../sass/print.scss */
+/* line 11, ../../sass/print.scss */
 body input {
   width: 100%;
   border: none;
   text-align: center;
   background-color: inherit;
 }
-/* line 21, ../../sass/print.scss */
+/* line 17, ../../sass/print.scss */
 body tr:nth-child(odd) {
   background-color: #eee;
 }
-/* line 24, ../../sass/print.scss */
+/* line 20, ../../sass/print.scss */
 body tr:nth-child(even) {
   background-color: #fff;
 }
-/* line 27, ../../sass/print.scss */
+/* line 23, ../../sass/print.scss */
 body td {
   text-align: center;
 }
