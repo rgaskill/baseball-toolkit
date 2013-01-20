@@ -4,6 +4,27 @@
 // @include blueprint-print
 
 //Recommended Blueprint configuration with scoping and semantic layout:
-body.bp {
+body {
   @include blueprint-print(true);
+  #position-monitor{
+    display: none;
+  }
+  #add-player-input{
+    display: none;
+  }
+  input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    background-color: inherit;
+  }
+  tr:nth-child(odd)    {
+    background-color:#eee;
+  }
+  tr:nth-child(even)    {
+    background-color:#fff;
+  }
+  td {
+    text-align: center;
+  }
 }

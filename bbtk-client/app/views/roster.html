@@ -7,7 +7,6 @@
                     <th class="ui-widget-header">Player Name</th>
                     <th ng-repeat="inning in innings" class="ui-widget-header">{{inning}}</th>
                     <th class="ui-widget-header">Bench Count</th>
-                    <th class="ui-widget-header">Positons Played More Than Once</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +19,6 @@
                         <input ui-jq="autocomplete" ui-options="positionAutoComplete" ng-controller='RosterPositionCtrl' list-click=true  ng-model="position" value="{{position.label}}">
                     </td>
                     <td>{{benchCount(player)}}</td>
-                    <td>{{dupePositions}}</td>
                 </tr>
             </tbody>
         </table>
